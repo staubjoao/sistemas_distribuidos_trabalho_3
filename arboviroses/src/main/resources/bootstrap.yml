@@ -4,6 +4,5 @@ spring:
   profiles:
     active: default
   cloud:
-    discovery:
-      client:
-        uri: http://localhost:7000
+    config:
+      uri: http://localhost:7000
