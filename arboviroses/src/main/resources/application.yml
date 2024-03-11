@@ -1,5 +1,3 @@
-server:
-  port: 8080
 spring:
   application:
     name: arboviroses
@@ -30,10 +28,9 @@ spring:
     password: guest
   queue:
     name: teste
-
 eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
-    service-url:
+    serviceUrl:
       defaultZone: http://localhost:8761/eureka

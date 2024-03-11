@@ -37,4 +37,19 @@ public class Imovel {
     @Column
     private String municipio;
 
+    public Imovel() {
+
+    }
+    public Imovel(String id, String localidade, String numero, String complemento, String pontoGeografico, String bairro, String logradouro, String tipoImovel, String municipio) {
+        this.id = id;
+        this.localidade = localidade;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.pontoGeografico = pontoGeografico;
+        this.bairro = bairro;
+        this.logradouro = logradouro;
+        this.tipoImovel = tipoImovel;
+        this.municipio = municipio;
+    }
+
 }

@@ -20,7 +20,7 @@ public class ImovelServiceImpl implements ImovelService {
             repository.saveImovel(imovel.getId(), imovel.getLocalidade(), imovel.getNumero(), imovel.getComplemento(),
                     imovel.getBairro(), imovel.getLogradouro(), imovel.getTipoImovel(), imovel.getMunicipio());
             return imovel;
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -28,7 +28,8 @@ public class ImovelServiceImpl implements ImovelService {
 
     @Override
     public List<Imovel> getlAll() {
-        return repository.findAll();
+        List<Imovel> teste = repository.findAllImoveis();
+        return teste;
     }
 
 }

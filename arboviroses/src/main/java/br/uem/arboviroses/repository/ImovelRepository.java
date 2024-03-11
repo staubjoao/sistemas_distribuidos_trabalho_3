@@ -47,11 +47,11 @@ public interface ImovelRepository extends JpaRepository<Imovel, String> {
                     "localidade, " +
                     "numero, " +
                     "complemento, " +
-                    "ST_AsText(ponto_geografico) AS pontoGeografico, " +
+                    "ST_AsText(ponto_geografico) AS ponto_geografico, " +
                     "bairro, " +
                     "logradouro, " +
-                    "tipo_imovel, AS tipoImovel"  +
+                    "tipo_imovel,"  +
                     "municipio " +
                     "FROM imovel;", nativeQuery = true)
-    List<Imovel> findAllQuarteiroes();
+    List<Imovel> findAllImoveis();
 }
