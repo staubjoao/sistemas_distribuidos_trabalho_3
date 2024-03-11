@@ -1,0 +1,39 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: arboviroses
+  datasource:
+    url: jdbc:postgresql://localhost/arboviroses_sd
+    username: postgres
+    password: admin
+    hikari:
+      schema: public
+    dbcp2:
+      test-while-idle: true
+      validation-query: select 1
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        use_sql_comments: true
+  main:
+    banner-mode: off
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  queue:
+    name: teste
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
