@@ -1,6 +1,3 @@
-spring:
-  application:
-    name: arboviroses
 eureka:
   client:
     register-with-eureka: true

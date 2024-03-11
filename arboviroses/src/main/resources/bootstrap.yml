@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: arboviroses
+  profiles:
+    active: default
+  cloud:
+    discovery:
+      client:
+        uri: http://localhost:7000
