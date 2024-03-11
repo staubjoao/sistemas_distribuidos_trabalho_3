@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: arboviroses
-  profiles:
-    active: default
-  cloud:
-    config:
-      uri: http://localhost:7000
