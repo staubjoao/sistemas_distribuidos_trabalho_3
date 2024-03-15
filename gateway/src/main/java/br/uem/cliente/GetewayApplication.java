@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class ClienteApplication {
+public class GetewayApplication {
 
     @Bean
     @LoadBalanced
@@ -16,7 +16,7 @@ public class ClienteApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ClienteApplication.class, args);
+        SpringApplication.run(GetewayApplication.class, args);
     }
 
 }
