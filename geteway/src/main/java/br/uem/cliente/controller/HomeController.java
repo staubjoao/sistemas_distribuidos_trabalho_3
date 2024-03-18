@@ -29,14 +29,9 @@ public class HomeController {
         while (tentativasRestantes > 0) {
             try {
                 ResponseEntity<ImovelRetornoDTO[]> responseEntity = restTemplate.exchange("http://arboviroses/api/imovel", HttpMethod.GET, null, ImovelRetornoDTO[].class);
-
-                if (responseEntity.getStatusCode().is2xxSuccessful()) {
-                    List<ImovelRetornoDTO> imoveis = Arrays.asList(responseEntity.getBody());
-                    imoveis.forEach(System.out::println);
-                    return imoveis;
-                } else {
-                    System.out.println("Erro ao obter lista de imóveis: " + responseEntity.getStatusCode());
-                }
+                List<ImovelRetornoDTO> imoveis = Arrays.asList(responseEntity.getBody());
+                imoveis.forEach(System.out::println);
+                return imoveis;
             } catch (Exception e) {
                 System.out.println("Tentativa " + (4 - tentativasRestantes) + " falhou ao obter lista de imóveis: " + e.getMessage());
                 tentativasRestantes--;
