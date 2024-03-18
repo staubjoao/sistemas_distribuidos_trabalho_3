@@ -24,30 +24,46 @@ public class HomeController {
 
     @GetMapping("/")
     public List<ImovelRetornoDTO> imoveis() {
-        ResponseEntity<ImovelRetornoDTO[]> responseEntity = restTemplate.exchange("http://arboviroses/api/imovel", HttpMethod.GET, null, ImovelRetornoDTO[].class);
+        int tentativasRestantes = 3;
 
-        if(responseEntity.getStatusCode().is2xxSuccessful()) {
-            List<ImovelRetornoDTO> imoveis = Arrays.asList(responseEntity.getBody());
-            imoveis.forEach(System.out::println);
-            return imoveis;
-        } else {
-            System.out.println("Erro ao obter lista de imóveis: " + responseEntity.getStatusCode());
+        while (tentativasRestantes > 0) {
+            try {
+                ResponseEntity<ImovelRetornoDTO[]> responseEntity = restTemplate.exchange("http://arboviroses/api/imovel", HttpMethod.GET, null, ImovelRetornoDTO[].class);
+
+                if (responseEntity.getStatusCode().is2xxSuccessful()) {
+                    List<ImovelRetornoDTO> imoveis = Arrays.asList(responseEntity.getBody());
+                    imoveis.forEach(System.out::println);
+                    return imoveis;
+                } else {
+                    System.out.println("Erro ao obter lista de imóveis: " + responseEntity.getStatusCode());
+                }
+            } catch (Exception e) {
+                System.out.println("Tentativa " + (4 - tentativasRestantes) + " falhou ao obter lista de imóveis: " + e.getMessage());
+                tentativasRestantes--;
+            }
         }
+
+        System.out.println("Falha ao obter lista de imóveis após " + (4 - tentativasRestantes) + " tentativas");
         return null;
     }
 
     @PostMapping("/")
     public ImovelEnvioDTO imovel(@RequestBody ImovelEnvioDTO imovelDTO) {
         HttpEntity<ImovelEnvioDTO> requestEntity = new HttpEntity<>(imovelDTO);
-        ResponseEntity<ImovelEnvioDTO> responseEntity = restTemplate.exchange("http://arboviroses/api/imovel", HttpMethod.POST, requestEntity, ImovelEnvioDTO.class);
+        int tentativasRestantes = 3;
 
-        if(responseEntity.getStatusCode().is2xxSuccessful()) {
-            System.out.println("Imóvel criado com sucesso: " + responseEntity.getBody());
-            return responseEntity.getBody();
-        } else {
-            System.out.println("Erro ao criar imóvel: " + responseEntity.getStatusCode());
-            return null;
+        while (tentativasRestantes > 0) {
+            try {
+                ResponseEntity<ImovelEnvioDTO> responseEntity = restTemplate.exchange("http://arboviroses/api/imovel", HttpMethod.POST, requestEntity, ImovelEnvioDTO.class);
+                System.out.println("Imóvel criado com sucesso: " + responseEntity.getBody());
+                return responseEntity.getBody();
+            } catch (Exception e) {
+                System.out.println("Tentativa " + (4 - tentativasRestantes) + " falhou ao criar imóvel: " + e.getMessage());
+                tentativasRestantes--;
+            }
         }
-    }
 
+        System.out.println("Falha ao criar imóvel após " + (4 - tentativasRestantes) + " tentativas");
+        return null;
+    }
 }

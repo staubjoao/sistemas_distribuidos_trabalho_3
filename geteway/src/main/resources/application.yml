@@ -3,3 +3,10 @@ server:
 spring:
   application:
     name: geteway
+
+resilience4j:
+  retry:
+    instances:
+      flightSearch:
+        maxRetryAttempts: 3
+        waitDuration: 2s
